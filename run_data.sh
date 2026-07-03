@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ~/TraceDet
+cd ~/TraceDet-
 
 
 

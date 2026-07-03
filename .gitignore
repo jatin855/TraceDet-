@@ -1,0 +1,32 @@
+# Datasets
+ShenxuC/
+
+
+# Model caches / downloaded weights
+tracedet_cache/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Logs
+logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Conda / environment
+my_requirements.txt
+environment.yml.backup
+
+# OS / editor junk
+.DS_Store
+.vscode/
+*.swp
+
+# HuggingFace cache
+.cache/
