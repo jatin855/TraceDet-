@@ -5,7 +5,7 @@ import json
 import os
 import re
 from tqdm import tqdm
-Path = "/home/ee/phd/eez248435/TraceDet-/chache_dir/tracedet_cache/qwen8b"
+Path = "/scratch/ee/phd/eez248435/tracedet_cache/qwen_8B"
 
 def load_qwen(model_path = Path):
     tokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3-8B', trust_remote_code=True, cache_dir=Path)

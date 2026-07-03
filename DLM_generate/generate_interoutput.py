@@ -179,7 +179,7 @@ def main():
 
     args = pars_args()
     device = f"cuda:{args.device}"
-    Path = "/home/ee/phd/eez248435/TraceDet-/chache_dir"
+    Path = "/scratch/ee/phd/eez248435/tracedet_cache"
     model = AutoModel.from_pretrained(f'GSAI-ML/LLaDA-8B-{args.model}', trust_remote_code=True,
                                                torch_dtype=torch.bfloat16, cache_dir=f'{Path}/tracedet_cache/llada_model_{args.model}').to(device).eval()
     tokenizer = AutoTokenizer.from_pretrained(f'GSAI-ML/LLaDA-8B-{args.model}', trust_remote_code=True, cache_dir=f'{Path}/tracedet_cache/llada_model_{args.model}')
