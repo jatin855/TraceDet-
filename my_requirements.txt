@@ -138,7 +138,7 @@ scipy==1.15.3
 seaborn==0.13.2
 selfcheckgpt==0.1.7
 sentence-transformers==5.1.0
-sentencepiece==0.2.1
+sentencepiece==0.2.0
 sentry-sdk==2.32.0
 shellingham==1.5.4
 six==1.17.0
