@@ -6,7 +6,6 @@ ShenxuC/
 tracedet_cache/
 *.safetensors
 *.bin
-*.pt
 *.pth
 
 # Logs
