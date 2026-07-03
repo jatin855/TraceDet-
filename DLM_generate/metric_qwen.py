@@ -5,15 +5,16 @@ import json
 import os
 import re
 from tqdm import tqdm
+Path = "/home/ee/phd/eez248435/TraceDet-/chache_dir/tracedet_cache/qwen8b"
 
-def load_qwen(model_path = '/scratch/local/ssd/yujunchi/qwen8b'):
-    tokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3-8B', trust_remote_code=True, cache_dir='/scratch/local/ssd/yujunchi/qwen8b')
+def load_qwen(model_path = Path):
+    tokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3-8B', trust_remote_code=True, cache_dir=Path)
     model = AutoModelForCausalLM.from_pretrained(
         'Qwen/Qwen3-8B',
         device_map="auto",
         torch_dtype=torch.float16,
         trust_remote_code=True,
-        cache_dir='/scratch/local/ssd/yujunchi/qwen8b'
+        cache_dir=Path
     ).eval()
     return tokenizer, model
 
@@ -148,13 +149,15 @@ def extract_answer(text):
         return text
 
 if __name__ == "__main__":
-    model_path = "/scratch/local/ssd/yujunchi/qwen8b"
+    model_path = os.path.expanduser("~/tracedet_cache/qwen8b")
     tokenizer, model = load_qwen(model_path)
 
-    input_dir = "./results"
-    dataset = "sciqa"
-    generate_task = "emb"
+    input_dir = "./DLM_generate/process_data/triviaqa_Instruct_64_entropy"
+    
     for filename in tqdm(os.listdir(input_dir)):
+        if not filename.endswith("_resultlist.json"):
+            continue
+
         answer_path = os.path.join(input_dir, filename)
         output_file = filename.replace("_resultlist.json", "_labellist.pt")
         output_path = f"./DLM_generate/process_data/triviaqa_Instruct_64_entropy/"
