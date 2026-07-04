@@ -16,7 +16,7 @@ task_name = "entropy"
 model_name = "Instruct"
 gen_length = 64
 
-data_path = f'./DLM_generate/process_data/{dataset_name}_{model_name}_{gen_length}_{task_name}/'
+data_path = f"./DLM_generate/process_data/{dataset_name}_{model_name}_{gen_length}_{task_name}/"
 
 
 def load_split(split):
