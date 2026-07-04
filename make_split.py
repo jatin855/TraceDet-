@@ -1,7 +1,9 @@
 '''
 this file is same as data_generator.py in DLM_generate but it is for triviaqa and llada_instruct.
-both script is doinf same job but for different setup.
+both script are doing same job but for different setup.
 
+Updated to run on the FULL triviaqa dataset with real, non-overlapping
+train / val / test splits (matching the paper's setup: 2000 / 200 / 200).
 '''
 import torch
 import random
@@ -23,6 +25,7 @@ def load_split(split):
     X = torch.load(data_path + f'{dataset_name}_{split}.pt')
     if isinstance(X, list):
         X = torch.stack([torch.tensor(x) for x in X]).squeeze()
+    print(f"[{split}] raw data shape: {X.shape}")
     X = X.transpose(0, 1)  # [time_length, num_data, feature_dim]
 
     Y = torch.load(data_path + f'{dataset_name}_{split}_labellist.pt')
@@ -39,17 +42,11 @@ def load_split(split):
     return X, T, Y
 
 
-USE_TEST_FOR_ALL = True
+X_train, T_train, Y_train = load_split("train")
+X_val, T_val, Y_val = load_split("val")
+X_test, T_test, Y_test = load_split("test")
 
-if USE_TEST_FOR_ALL:
-    X_test, T_test, Y_test = load_split("test")
-    X_train, T_train, Y_train = X_test, T_test, Y_test
-    X_val, T_val, Y_val = X_test, T_test, Y_test
-else:
-    X_train, T_train, Y_train = load_split("train")
-    X_val, T_val, Y_val = load_split("val")
-    X_test, T_test, Y_test = load_split("test")
-
+print(f"\nTrain: {X_train.shape}, Val: {X_val.shape}, Test: {X_test.shape}")
 
 D = {
     'train_loader': RWDataset(X_train, T_train, Y_train),
