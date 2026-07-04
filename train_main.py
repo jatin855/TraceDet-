@@ -1,3 +1,4 @@
+import os
 import torch
 import json
 import numpy as np
@@ -78,9 +79,9 @@ def main():
 
     # Path logic: if it's one of our local datasets, use the specialized naming convention
     if dataset.startswith("local_"):
-        base_path = f'./datasets/{dataset}_{model}_{gen_length}_{task}/'
+        base_path = 'DLM_generate/process_data/triviaqa_Instruct_64_entropy/'
     else:
-        base_path = f'./datasets/{dataset}_{model}_{gen_length}_{task}/'
+        base_path = 'DLM_generate/process_data/triviaqa_Instruct_64_entropy/'
     
     D = process_Synth(split_no = 1, device = device, base_path = base_path)
     train_loader = torch.utils.data.DataLoader(D['train_loader'], batch_size = batch_size, shuffle = True)
