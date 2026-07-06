@@ -8,9 +8,7 @@ tracedet_cache/
 *.bin
 *.pth
 
-# Logs
-logs/
-*.log
+
 
 # Python
 __pycache__/
